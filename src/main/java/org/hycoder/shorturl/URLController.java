@@ -35,6 +35,7 @@ public class URLController {
 		String regex = "[0-9a-zA-Z]{1,6}";
 		if (shortURL.matches(regex)) {
 			int urlId = Utils.convertToId(shortURL);
+			//System.out.println("userid: " + urlId);
 			URLMap urlMap = urlDAO.findById(urlId);
 			if (urlMap == null)
 				throw new URLNotFoundException();
