@@ -9,7 +9,7 @@ import java.sql.Statement;
 import javax.sql.DataSource;
 
 /**
- * 
+ * DAO
  * */
 public class URLDAO {
 
@@ -35,12 +35,13 @@ public class URLDAO {
 			rs.close();
 			ps.close();
 		} catch (SQLException e) {
-			throw new RuntimeException(e);
+			e.printStackTrace();
 		} finally {
 			if (conn != null) {
 				try {
 					conn.close();
 				} catch (SQLException e) {
+					e.printStackTrace();
 				}
 			}
 		}
@@ -67,12 +68,13 @@ public class URLDAO {
 			}
 			ps.close();
 		} catch (SQLException e) {
-			throw new RuntimeException(e);
+			e.printStackTrace();
 		} finally {
 			if (conn != null) {
 				try {
 					conn.close();
 				} catch (SQLException e) {
+					e.printStackTrace();
 				}
 			}
 		}
@@ -96,12 +98,40 @@ public class URLDAO {
 			ps.close();
 			return shortener;
 		} catch (SQLException e) {
-			throw new RuntimeException(e);
+			e.printStackTrace();
 		} finally {
 			if (conn != null) {
 				try {
 					conn.close();
 				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Updates tiny_url column in url_map table.
+	 * */
+	public void updateTinyURL(int rowId, String tinyURL) {
+		String sql = "UPDATE url_map SET tiny_url = ? WHERE id = ?";
+		Connection conn = null;
+		try {
+			conn = dataSource.getConnection();
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, tinyURL);
+			ps.setInt(2, rowId);
+			ps.executeUpdate();
+			ps.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
 				}
 			}
 		}

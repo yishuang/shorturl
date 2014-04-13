@@ -8,7 +8,7 @@ public class Utils {
 	private static Map<Integer, String> numToCharMap = new HashMap<Integer, String>();
 	private static int BASE = 62;
 	private static Map<String, Integer> charToNumMap = new HashMap<String, Integer>();
-	private static String HOSTNAME = "http://localhost:8080";
+	private static String WEBAPP_BASEURL = "http://localhost:8080/shorturl";
 	
 	static {
 		// 0-9
@@ -37,7 +37,7 @@ public class Utils {
 	}
 	
 	public static String getHostname() {
-		return HOSTNAME;
+		return WEBAPP_BASEURL;
 	}
 
 	public static void printMap() {

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @RequestMapping("/url")
 public class URLController {
 
+	private final String PATH = "/rest/url/";
 	@Autowired
 	private URLDAO urlDAO;
 
@@ -35,7 +36,7 @@ public class URLController {
 		String regex = "[0-9a-zA-Z]{1,6}";
 		if (shortURL.matches(regex)) {
 			int urlId = Utils.convertToId(shortURL);
-			//System.out.println("userid: " + urlId);
+			// System.out.println("userid: " + urlId);
 			URLMap urlMap = urlDAO.findById(urlId);
 			if (urlMap == null)
 				throw new URLNotFoundException();
@@ -54,13 +55,11 @@ public class URLController {
 		URLMap urlMap = new URLMap(-1, "000000", longURL);
 		int rowId = urlDAO.insert(urlMap);
 		if (rowId > 0) {
-			//String sURL = Utils.shortURL(rowId);
-			//String rURL = request.getRequestURI();
-			//String requestBase = rURL.substring(0, rURL.length()- longURL.length());
+			String shortURL = Utils.shortURL(rowId);
 			// update tiny_url column
-			
-			//return Utils.getHostname() + requestBase + sURL;
-			return "";
+			urlDAO.updateTinyURL(rowId, shortURL);
+			String ret = Utils.getHostname() + PATH + shortURL;
+			return ret;
 		} else {
 			throw new BadRequestException();
 		}
