@@ -1,4 +1,4 @@
-package org.hycoder.shorturl;
+package myself.shorturl;
 
 /**
  * Database table url_map and JSON model

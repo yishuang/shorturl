@@ -1,4 +1,4 @@
-package org.hycoder.shorturl;
+package myself.shorturl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

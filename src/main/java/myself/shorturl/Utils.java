@@ -1,4 +1,4 @@
-package org.hycoder.shorturl;
+package myself.shorturl;
 
 import java.util.HashMap;
 import java.util.Map;

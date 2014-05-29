@@ -1,4 +1,4 @@
-package org.hycoder.shorturl;
+package myself.shorturl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -36,7 +36,7 @@ public class URLController {
 		String regex = "[0-9a-zA-Z]{1,6}";
 		if (shortURL.matches(regex)) {
 			int urlId = Utils.convertToId(shortURL);
-			// System.out.println("userid: " + urlId);
+			System.out.println("url ID: " + urlId);
 			URLMap urlMap = urlDAO.findById(urlId);
 			if (urlMap == null)
 				throw new URLNotFoundException();

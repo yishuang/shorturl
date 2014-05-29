@@ -1,5 +1,8 @@
 package org.hycoder.shorturl;
 
+import myself.shorturl.URLDAO;
+import myself.shorturl.URLMap;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
